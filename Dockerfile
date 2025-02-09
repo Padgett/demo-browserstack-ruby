@@ -11,14 +11,11 @@ RUN gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A170
 # # install RVM, Ruby, and Bundler
 USER jenkins
 RUN \curl -L https://get.rvm.io | bash
-# RUN /bin/bash -l -c "rvm autolibs disable"
 USER root
-# RUN source "/var/jenkins_home/.rvm/scripts/rvm"
-# RUN source "/var/jenkins_home/.rvm/scripts/rvm"
 RUN /bin/bash -l -c "/var/jenkins_home/.rvm/bin/rvm requirements"
 USER jenkins
 RUN /bin/bash -l -c "rvm install 3.4.1"
 RUN /bin/bash -l -c "gem install bundler --no-document"
 
 # Jenkins plugin setup
-RUN jenkins-plugin-cli --plugins workflow-aggregator docker-plugin ssh browserstack-integration
+RUN jenkins-plugin-cli --plugins workflow-aggregator docker-plugin browserstack-integration
