@@ -1,0 +1,26 @@
+pipeline {
+   agent any
+   stages {
+      stage('Cleanup') {
+         steps {
+            deleteDir()
+         }
+      }
+      stage('setup') {
+         steps {
+            sh "git clone https://github.com/Padgett/demo-browserstack-ruby"
+         }
+      }
+      stage('Test') {
+         steps {
+            browserstack(credentialsId: '84d65556-f3bd-4b40-9410-82f91b1b9fb4') {
+               dir('demo-browserstack-ruby') {
+                  sh '''#!/bin/bash
+                 source ~/.rvm/scripts/rvm && rvm use 3.4.1 && bundle install && ruby ./parallel_runner.rb
+               '''
+               }
+            }
+         }
+      }
+   }
+}
