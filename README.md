@@ -25,6 +25,10 @@ Copy initial password from:
 
 Navigate to `http://localhost:8080`. Unlock Jenkins using the password.
 
+Install suggested plugins.
+
+Finish configuration
+
 ### Add BrowserStack credentials to Jenkins
 Manage > System > BrowserStack
 
